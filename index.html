@@ -364,7 +364,7 @@
             <a href="https://github.com/dchelimo" class="primary" target="_blank" rel="noopener">GitHub Profile</a>
             <a href="https://www.linkedin.com/in/david-chelimo" target="_blank" rel="noopener">LinkedIn</a>
             <a href="mailto:dchelimo7@gmail.com">Email</a>
-            <a href="David-Chelimo-Resume.pdf" target="_blank" rel="noopener">PDF Resume</a>
+            <a href="javascript:void(0)" onclick="downloadPDF()">PDF Resume</a>
           </div>
         </div>
       </div>
@@ -674,6 +674,25 @@
       </aside>
     </div>
   </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function downloadPDF() {
+      const links = document.querySelector('.hero-links');
+      links.style.display = 'none';
+      html2pdf()
+        .set({
+          margin: 10,
+          filename: 'David-Chelimo-Resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f8fafc' },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+        .from(document.body)
+        .save()
+        .then(() => { links.style.display = ''; });
+    }
+  </script>
 
   <footer>
     &copy; <span id="year"></span> David Chelimo &middot; Built with HTML &amp; CSS.
