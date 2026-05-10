@@ -6,12 +6,14 @@ Personal site for David Chelimo, hosted on GitHub Pages at `dchelimo.afyagateway
 
 ## Site structure
 
-| URL | Page | Source template |
-|---|---|---|
-| `/` | Bio (placeholder/landing) | `templates/bio.html` |
-| `/cv/` | Full CV / résumé | `templates/cv.html` |
-| `/projects/` | Projects (placeholder) | `templates/projects.html` |
-| `/blog/` | Blog (placeholder) | `templates/blog.html` |
+| URL | Page | Source template | In nav? |
+|---|---|---|---|
+| `/` | Bio + links | `templates/bio.html` | Yes |
+| `/cv/` | Full CV / résumé | `templates/cv.html` | No — linked from Bio |
+| `/projects/` | Projects (placeholder) | `templates/projects.html` | Yes |
+| `/blog/` | Blog (placeholder) | `templates/blog.html` | Yes |
+
+Nav has three items: **Bio · Projects · Blog**. The CV page exists and is reachable via the "View CV" button on Bio, but is not in the top nav.
 
 Each template extends `templates/base.html` (shared `<head>`, top accent bar, nav, footer).
 
