@@ -283,6 +283,18 @@
     border-radius: 2px;
   }
 
+  /* Main two-column grid (web) */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .layout-grid { grid-template-columns: 1fr; }
+  }
+
   /* Earlier experience toggle */
   .earlier-toggle {
     font-size: 0.75rem;
@@ -323,129 +335,152 @@
 .delay-4 { animation-delay: 0.32s; }
 .delay-5 { animation-delay: 0.40s; }
 
-/* ─── Print / WeasyPrint ────────────────────────────────────── */
+/* ─── Print / WeasyPrint — 1-page resume ───────────────────── */
 @media print {
 
   @page {
     size: A4;
-    margin: 14mm 18mm;
+    margin: 10mm 13mm;
   }
 
-  /* Reset web chrome */
-  .site-bar         { display: none; }
+  /* ── Hide web-only elements ── */
+  .site-bar,
   .hero-links,
-  .header-links     { display: none; }
-  .earlier-toggle   { display: none; }
-  details > div,
-  details > .exp-entry { display: block !important; }
-  summary           { display: none !important; }
-  .animate-in       { animation: none; opacity: 1; transform: none; }
+  .header-links,
+  .earlier-toggle,
+  details > summary,
+  #about,
+  #selected-work,
+  #languages,
+  footer             { display: none !important; }
 
+  /* Expand earlier experience in PDF */
+  #earlier-experience            { display: block !important; }
+  #earlier-experience summary    { display: none !important; }
+  #earlier-experience > *        { display: block !important; }
+
+  /* Cap bullets at 3 per experience entry */
+  .exp-bullets li:nth-child(n+4) { display: none !important; }
+
+  /* Show earlier experience content even though summary is hidden */
+  details            { display: block !important; }
+  details > *        { display: block !important; }
+
+  .animate-in        { animation: none !important; opacity: 1 !important; transform: none !important; }
+
+  /* ── Base ── */
   body {
     background: white;
     color: #111;
     font-family: 'DM Sans', sans-serif;
-    font-size: 9.5pt;
-    line-height: 1.45;
+    font-size: 8.5pt;
+    line-height: 1.4;
   }
 
-  /* ── PDF Header ── */
+  /* ── Header ── */
   .site-header {
     border-bottom: 1.5pt solid #0C2340;
-    padding: 0 0 8pt 0;
-    margin-bottom: 10pt;
+    padding: 0 0 6pt 0;
+    margin-bottom: 8pt;
   }
 
   .header-grid {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 12pt;
+    gap: 10pt;
     align-items: end;
   }
 
   .header-specialisms {
-    font-size: 7pt;
+    font-size: 6.5pt;
     letter-spacing: 0.14em;
     color: #0A7566;
-    margin-bottom: 3pt;
+    margin-bottom: 2pt;
   }
 
   .site-name {
     font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 26pt;
+    font-size: 22pt;
     color: #0C2340;
-    letter-spacing: -0.01em;
     line-height: 1;
     margin: 0 0 2pt 0;
   }
 
   .site-title {
-    font-size: 8pt;
+    font-size: 7.5pt;
     color: #555;
     font-family: 'JetBrains Mono', monospace;
     margin: 0;
   }
 
-  .header-aside {
-    text-align: right;
-  }
+  .header-aside { text-align: right; }
 
   .header-meta {
     display: flex;
     flex-direction: column;
-    gap: 2pt;
-    font-size: 7.5pt;
+    gap: 1.5pt;
+    font-size: 7pt;
     color: #555;
     margin-bottom: 0;
   }
 
   .header-meta span::before { display: none; }
 
+  /* Summary shown in PDF header in place of About section */
   .header-summary {
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: #333;
-    line-height: 1.55;
-    margin-top: 7pt;
+    line-height: 1.5;
+    margin-top: 5pt;
     max-width: none;
   }
 
-  /* ── PDF Layout ── */
+  /* ── Layout: table (most reliable in WeasyPrint) ── */
   main {
     padding: 0 !important;
     margin: 0 !important;
   }
 
   .layout-grid {
-    display: grid;
-    grid-template-columns: 1fr 220pt;
-    gap: 14pt;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
   }
 
-  /* ── PDF Section headings ── */
+  .layout-grid > div:first-child {
+    display: table-cell;
+    width: 59%;
+    padding-right: 10pt;
+    vertical-align: top;
+  }
+
+  .layout-grid > aside {
+    display: table-cell;
+    width: 41%;
+    vertical-align: top;
+  }
+
+  /* ── Section headings ── */
   .section-heading {
-    font-size: 7pt;
+    font-size: 6.5pt;
     letter-spacing: 0.18em;
     font-weight: 700;
     color: #0C2340;
     border-bottom: 0.75pt solid #0C2340;
     padding-bottom: 2pt;
-    margin-bottom: 6pt;
+    margin-bottom: 5pt;
     text-transform: uppercase;
   }
 
-  section {
-    margin-bottom: 10pt !important;
-  }
+  section { margin-bottom: 8pt !important; }
 
-  /* ── PDF Experience timeline ── */
-  .timeline { space-y: 0; }
-
+  /* ── Experience entries ── */
   .exp-entry {
     border-left: none;
     padding-left: 0;
-    padding-bottom: 7pt;
-    border-bottom: 0.5pt solid #E4E0DB;
-    margin-bottom: 6pt;
+    padding-bottom: 5pt;
+    border-bottom: 0.4pt solid #E4E0DB;
+    margin-bottom: 5pt;
   }
 
   .exp-entry:last-child {
@@ -460,61 +495,40 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 2pt;
+    gap: 8pt;
+    margin-bottom: 1.5pt;
   }
 
-  .exp-role {
-    font-size: 9pt;
-    font-weight: 600;
-    color: #111;
-  }
+  .exp-role     { font-size: 8.5pt; font-weight: 600; color: #111; }
+  .exp-company  { font-size: 7.5pt; color: #0A7566; font-weight: 500; }
+  .exp-date     { font-size: 7pt; color: #666; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
 
-  .exp-company {
-    font-size: 8pt;
-    color: #0A7566;
-    font-weight: 500;
-  }
-
-  .exp-date {
-    font-size: 7.5pt;
-    color: #666;
-    font-family: 'JetBrains Mono', monospace;
-    white-space: nowrap;
-  }
-
-  .exp-bullets {
-    padding-left: 0;
-    margin-top: 2pt;
-  }
+  .exp-bullets  { padding-left: 0; margin-top: 2pt; }
 
   .exp-bullets li {
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: #333;
-    padding-left: 1em;
-    line-height: 1.45;
+    padding-left: 0.9em;
+    line-height: 1.38;
     margin-bottom: 1pt;
   }
 
-  .exp-bullets li::before {
-    color: #0A7566;
-  }
+  .exp-bullets li::before { color: #0A7566; }
 
-  /* ── PDF Tags ── */
-  .tags {
-    margin-top: 4pt;
-    gap: 3pt;
-  }
+  /* ── Tags ── */
+  .tags { margin-top: 3pt; gap: 2pt; }
 
   .tag {
-    font-size: 6.5pt;
-    padding: 1pt 4pt;
+    font-size: 6pt;
+    padding: 1pt 3.5pt;
     background: #E6F4F2;
     color: #0A7566;
     border: 0.5pt solid #C2E2DE;
     border-radius: 2pt;
+    letter-spacing: 0.04em;
   }
 
-  /* ── PDF Cards → flat ── */
+  /* ── Cards → flat ── */
   .card {
     border: none;
     border-radius: 0;
@@ -523,31 +537,21 @@
     background: transparent;
   }
 
-  /* ── PDF Skills ── */
-  .skill-label { font-size: 8pt; }
+  /* ── Skills: hide bars, just show tags ── */
+  .skill-bar    { display: none; }
+  .skill-label  { font-size: 7.5pt; font-weight: 600; color: #0C2340; margin-bottom: 2pt; }
+  .skill-row    { margin-bottom: 5pt; }
 
-  .skill-bar {
-    height: 2pt;
-    background: #E4E0DB;
-  }
+  /* ── Education ── */
+  .exp-role, .exp-company, .exp-date { line-height: 1.4; }
 
-  /* ── PDF About ── */
-  .about-card p {
-    font-size: 8.5pt;
-    color: #333;
-    line-height: 1.55;
-    margin-bottom: 4pt;
-  }
-
-  /* ── PDF Publications ── */
+  /* ── Publications ── */
   .pub-list li {
-    font-size: 8pt;
-    margin-bottom: 5pt;
-    line-height: 1.45;
+    font-size: 7.5pt;
+    margin-bottom: 4pt;
+    line-height: 1.4;
   }
 
-  /* Prevent page breaks inside entries */
-  .exp-entry,
-  .card,
-  section { page-break-inside: avoid; }
+  /* ── Page break control ── */
+  .exp-entry, section { page-break-inside: avoid; }
 }
