@@ -3,6 +3,14 @@ name: Build CSS and PDF
 on:
   push:
     branches: [main]
+    paths:
+      - 'index.html'
+      - 'src/**'
+      - 'tailwind.config.js'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'requirements.txt'
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
