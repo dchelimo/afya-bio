@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install Node dependencies
         run: npm ci
@@ -27,12 +30,16 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install WeasyPrint dependencies
+      - name: Install WeasyPrint system dependencies
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libpangocairo-1.0-0 \
-            libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
-          pip install -r requirements.txt
+          sudo apt-get install -y \
+            libpango-1.0-0 libpangoft2-1.0-0 libpangocairo-1.0-0 \
+            libcairo2 libgdk-pixbuf-2.0-0 libffi-dev \
+            libharfbuzz0b libfontconfig1 shared-mime-info
+
+      - name: Install WeasyPrint
+        run: pip install -r requirements.txt
 
       - name: Generate PDF
         run: python scripts/generate_pdf.py
@@ -42,6 +49,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           mkdir -p dist
-          git add dist/styles.css David-Chelimo-Resume.pdf
+          git add -f dist/styles.css David-Chelimo-Resume.pdf
           git diff --cached --quiet || git commit -m "chore: rebuild CSS and PDF [skip ci]"
           git push
