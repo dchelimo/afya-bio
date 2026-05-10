@@ -5,388 +5,78 @@
   <title>David Chelimo – Clinical Bioinformatics Scientist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Professional bio for David Chelimo, Clinical Bioinformatics Scientist and aspiring Bioinformatics Software Engineer.">
-  <style>
-    :root {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --accent: #0d9488;
-      --accent-soft: #e6fffa;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-subtle: #e2e8f0;
-      --code: #f1f5f9;
-      --grad-a: #0f172a;
-      --grad-b: #0d9488;
-      --grad-c: #0891b2;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    /* Top accent bar */
-    body::before {
-      content: "";
-      display: block;
-      height: 3px;
-      background: linear-gradient(90deg, var(--grad-a), var(--grad-b), var(--grad-c));
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover { text-decoration: underline; }
-
-    header {
-      padding: 3rem 1.5rem 1rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Soft teal tint behind the hero */
-    header::after {
-      content: "";
-      position: absolute;
-      top: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 380px;
-      background: radial-gradient(ellipse at center, rgba(13,148,136,0.06) 0%, rgba(8,145,178,0.03) 50%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .wrapper {
-      max-width: 900px;
-      margin: 0 auto 3rem;
-      padding: 0 1.5rem 3rem;
-    }
-
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .hero-main { flex: 1 1 260px; min-width: 0; }
-
-    .hero h1 {
-      font-size: 2.6rem;
-      font-weight: 800;
-      margin: 0 0 0.5rem;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--grad-a) 0%, var(--grad-b) 60%, var(--grad-c) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero h2 {
-      font-size: 1rem;
-      font-weight: 500;
-      margin: 0 0 0.75rem;
-      color: var(--text-muted);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      letter-spacing: 0.01em;
-    }
-
-    .hero p {
-      margin: 0 0 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .hero-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .hero-meta span::before {
-      content: "•";
-      color: var(--accent);
-      font-size: 1.1rem;
-    }
-
-    .hero-links {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .hero-links a {
-      font-size: 0.9rem;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      background: #ffffff;
-      color: var(--text-main);
-    }
-
-    .hero-links a.primary {
-      background: var(--text-main);
-      border-color: transparent;
-      color: #ffffff;
-      font-weight: 600;
-    }
-
-    .hero-links a:hover {
-      text-decoration: none;
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .hero-links a.primary:hover {
-      background: var(--accent);
-      color: #ffffff;
-      border-color: transparent;
-    }
-
-    @keyframes pulse-ring {
-      0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
-      70%  { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
-      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .pill-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      color: #4ade80;
-      font-weight: 500;
-    }
-
-    .pill-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 999px;
-      background: #4ade80;
-      animation: pulse-ring 2s ease-out infinite;
-      flex-shrink: 0;
-    }
-
-    .pill-divider {
-      width: 1px;
-      height: 0.9rem;
-      background: #cbd5e1;
-    }
-
-    .pill-tag {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 800px) {
-      .layout { grid-template-columns: minmax(0, 1fr); }
-      header { padding-top: 2.25rem; }
-    }
-
-    section { margin-bottom: 1.75rem; }
-
-    h3 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--text-muted);
-      margin: 0 0 0.75rem;
-    }
-
-    .card {
-      border-radius: 1rem;
-      background: var(--card);
-      border: 1px solid var(--border-subtle);
-      padding: 1rem 1.2rem;
-      box-shadow: 0 1px 3px rgba(15,23,42,0.06), 0 4px 16px rgba(15,23,42,0.04);
-    }
-
-    .card + .card { margin-top: 0.9rem; }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      align-items: baseline;
-      margin-bottom: 0.4rem;
-    }
-
-    .card-title {
-      font-weight: 600;
-      font-size: 0.98rem;
-    }
-
-    .card-subtitle {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    .card-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    ul {
-      padding-left: 1.1rem;
-      margin: 0.4rem 0 0;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    li + li { margin-top: 0.25rem; }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid #ccfbf1;
-      background: var(--accent-soft);
-      color: #0f766e;
-      white-space: nowrap;
-    }
-
-    .twocol {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem 1rem;
-    }
-
-    @media (max-width: 640px) {
-      .twocol { grid-template-columns: minmax(0, 1fr); }
-    }
-
-    .skill-label {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    .skill-bar {
-      margin-top: 0.2rem;
-      height: 0.35rem;
-      border-radius: 999px;
-      background: #e2e8f0;
-      overflow: hidden;
-    }
-
-    .skill-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
-      width: var(--w, 60%);
-    }
-
-    .note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.6rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 1.2rem 1.5rem 2.5rem;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      text-align: center;
-    }
-
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.82rem;
-      background: var(--code);
-      padding: 0.1rem 0.25rem;
-      border-radius: 0.25rem;
-      border: 1px solid var(--border-subtle);
-    }
-  </style>
+  <link rel="stylesheet" href="dist/styles.css">
 </head>
-<body>
-  <header>
-    <div class="wrapper">
-      <div class="hero">
-        <div class="hero-main">
-          <div class="pill">
+<body class="font-sans antialiased leading-relaxed">
+
+  <header class="px-6 pt-12 pb-4 relative overflow-hidden">
+    <!-- Subtle teal glow -->
+    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[380px] rounded-full bg-teal-500/5 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-wrap gap-6 items-center justify-between">
+        <div class="flex-1 min-w-0" style="min-width:260px;">
+
+          <!-- Pill -->
+          <div class="flex items-center gap-3 flex-wrap mb-4">
             <span class="pill-tag">Clinical Bioinformatics</span>
             <span class="pill-divider"></span>
             <span class="pill-tag">Agentic Coding</span>
           </div>
-          <h1>David Chelimo</h1>
-          <h2>Clinical Bioinformatics Scientist II &mdash; Labcorp</h2>
-          <p>
-            Clinical bioinformatics scientist with nearly a decade of experience in genomic data analysis and cancer genomics. 
-            Proficient in Python, SQL, and bioinformatics tools, with a focus on annotated genomic profiles, variant review, and 
-            improving bioinformatics workflows. I’m especially interested in agentic coding workflows and have led team‑wide 
+
+          <!-- Name -->
+          <h1 class="hero-name text-4xl font-extrabold tracking-tight mb-2">David Chelimo</h1>
+
+          <!-- Title -->
+          <h2 class="font-mono text-sm font-medium text-slate-500 mb-3">Clinical Bioinformatics Scientist II &mdash; Labcorp</h2>
+
+          <!-- Summary -->
+          <p class="text-slate-500 text-sm mb-3">
+            Clinical bioinformatics scientist with nearly a decade of experience in genomic data analysis and cancer genomics.
+            Proficient in Python, SQL, and bioinformatics tools, with a focus on annotated genomic profiles, variant review, and
+            improving bioinformatics workflows. I'm especially interested in agentic coding workflows and have led team‑wide
             training on using AI coding assistants to accelerate development, deployment, and maintenance.
           </p>
-          <div class="hero-meta">
-            <span>Boston, MA (US)</span>
-            <span>~10 years in genomics</span>
-            <span>Joined Labcorp &mdash; May 2026</span>
+
+          <!-- Meta -->
+          <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-500 mb-4">
+            <span class="flex items-center gap-1.5 before:content-['•'] before:text-teal-500">Boston, MA (US)</span>
+            <span class="flex items-center gap-1.5 before:content-['•'] before:text-teal-500">~10 years in genomics</span>
+            <span class="flex items-center gap-1.5 before:content-['•'] before:text-teal-500">Joined Labcorp &mdash; May 2026</span>
           </div>
-          <div class="hero-links">
-            <a href="https://github.com/dchelimo" class="primary" target="_blank" rel="noopener">GitHub Profile</a>
-            <a href="https://www.linkedin.com/in/david-chelimo" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="mailto:dchelimo7@gmail.com">Email</a>
-            <a href="javascript:void(0)" onclick="downloadPDF()">PDF Resume</a>
+
+          <!-- Links -->
+          <div class="hero-links flex flex-wrap gap-3">
+            <a href="https://github.com/dchelimo" class="hero-link-primary" target="_blank" rel="noopener">GitHub Profile</a>
+            <a href="https://www.linkedin.com/in/david-chelimo" class="hero-link" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:dchelimo7@gmail.com" class="hero-link">Email</a>
+            <a href="David-Chelimo-Resume.pdf" class="hero-link" target="_blank" rel="noopener">PDF Resume</a>
           </div>
+
         </div>
       </div>
     </div>
   </header>
 
-  <main class="wrapper">
-    <div class="layout">
+  <main class="max-w-4xl mx-auto px-6 pb-12">
+    <div class="grid gap-8 mt-8" style="grid-template-columns: minmax(0,1.5fr) minmax(0,1fr);">
+
       <!-- Left column -->
       <div>
-        <section id="about">
-          <h3>About</h3>
-          <div class="card">
+
+        <!-- About -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">About</h3>
+          <div class="card text-sm text-slate-600 space-y-3">
             <p>
-              I work at the intersection of clinical diagnostics, cancer genomics, and data workflows. At Labcorp, I support 
-              clinical NGS assays through variant review, QC, and continuous improvement of bioinformatics workflows in a 
+              I work at the intersection of clinical diagnostics, cancer genomics, and data workflows. At Labcorp, I support
+              clinical NGS assays through variant review, QC, and continuous improvement of bioinformatics workflows in a
               high‑throughput, regulated environment.
             </p>
             <p>
               Previously, I helped build and scale the Genomic Analysis and Reporting (GAR) function at Foundation Medicine,
               curating ~95,000 samples and leading advanced analyses across complex cancer cases. Alongside that, I spearheaded
-              adoption of agentic coding practices and AI coding assistants (e.g., Claude Code) to make our team’s development
+              adoption of agentic coding practices and AI coding assistants (e.g., Claude Code) to make our team's development
               and maintenance work faster, safer, and easier to share.
             </p>
             <p>
@@ -396,45 +86,46 @@
           </div>
         </section>
 
-        <section id="experience">
-          <h3>Experience</h3>
+        <!-- Experience -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Experience</h3>
 
           <div class="card">
-            <div class="card-header">
+            <div class="flex justify-between gap-3 items-baseline mb-1">
               <div>
                 <div class="card-title">Clinical Bioinformatics Scientist II</div>
                 <div class="card-subtitle">Labcorp &middot; Remote (US)</div>
               </div>
-              <div class="card-meta">May 2026 &ndash; Present</div>
+              <div class="card-meta shrink-0">May 2026 &ndash; Present</div>
             </div>
-            <ul>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Support clinical NGS assays through variant review, QC, and troubleshooting in a high‑complexity diagnostic setting.</li>
               <li>Contribute to workflow improvements and documentation to enhance reliability, reproducibility, and turnaround time.</li>
               <li>Collaborate with cross‑functional teams to align assay needs with data and tooling requirements.</li>
             </ul>
-            <div class="tags">
+            <div class="flex flex-wrap gap-1.5 mt-3">
               <span class="tag">NGS</span>
               <span class="tag">Clinical Genomics</span>
               <span class="tag">Variant Review</span>
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-header">
+          <div class="card mt-3">
+            <div class="flex justify-between gap-3 items-baseline mb-1">
               <div>
                 <div class="card-title">Clinical Bioinformatics Analyst III</div>
                 <div class="card-subtitle">Foundation Medicine &middot; Boston, MA</div>
               </div>
-              <div class="card-meta">Feb 2025 &ndash; Apr 2026</div>
+              <div class="card-meta shrink-0">Feb 2025 &ndash; Apr 2026</div>
             </div>
-            <ul>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Led advanced analysis and delivery of NGS data in a high‑complexity clinical diagnostic laboratory as part of the Genomic Analysis and Reporting (GAR) team.</li>
               <li>Developed annotated genomic profiles and reviewed complex somatic variant calls for cancer patients across a broad range of tumor types.</li>
               <li>Implemented process improvements, including database search features and automation tools for bioinformatics workflows (Python, SQL, internal tooling).</li>
               <li>Spearheaded adoption of agentic coding practices and AI coding assistants (Claude Code): designed team training, established multi‑step prompting patterns and validation steps, and integrated AI‑assisted coding into development and maintenance workflows.</li>
               <li>Mentored junior analysts and presented findings to collaborators and internal teams.</li>
             </ul>
-            <div class="tags">
+            <div class="flex flex-wrap gap-1.5 mt-3">
               <span class="tag">Cancer Genomics</span>
               <span class="tag">GAR</span>
               <span class="tag">Python</span>
@@ -443,65 +134,63 @@
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-header">
+          <div class="card mt-3">
+            <div class="flex justify-between gap-3 items-baseline mb-1">
               <div>
                 <div class="card-title">Clinical Bioinformatics Analyst II / I</div>
                 <div class="card-subtitle">Foundation Medicine &middot; Cambridge, MA</div>
               </div>
-              <div class="card-meta">Sep 2017 &ndash; Feb 2025</div>
+              <div class="card-meta shrink-0">Sep 2017 &ndash; Feb 2025</div>
             </div>
-            <ul>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Developed annotated genomic profiles of somatic aberrations based on NGS data in cancer‑patient samples.</li>
               <li>Reviewed genomic variant calls using IGV and proprietary tools in collaboration with scientific teams.</li>
               <li>Delivered clinical reports in compliance with SOPs and defined turnaround times.</li>
               <li>Contributed to tools and workflows that improved efficiency and robustness in bioinformatics operations.</li>
               <li>Participated in training new team members and contributed to internal documentation.</li>
             </ul>
-            <div class="tags">
+            <div class="flex flex-wrap gap-1.5 mt-3">
               <span class="tag">Somatic Variants</span>
               <span class="tag">IGV</span>
               <span class="tag">SOPs</span>
             </div>
           </div>
 
-          <details style="margin-top:0.9rem;">
-            <summary style="cursor:pointer;font-size:0.82rem;color:var(--text-muted);padding:0.4rem 0;list-style:none;display:flex;align-items:center;gap:0.4rem;">
-              <span style="color:var(--accent);">+</span> Earlier experience
+          <details class="mt-3">
+            <summary class="cursor-pointer text-xs text-slate-400 py-1 flex items-center gap-1.5 list-none">
+              <span class="text-teal-500">+</span> Earlier experience
             </summary>
-
-            <div class="card" style="margin-top:0.6rem;">
-              <div class="card-header">
+            <div class="card mt-2">
+              <div class="flex justify-between gap-3 items-baseline mb-1">
                 <div>
                   <div class="card-title">Quality Control Analyst I</div>
                   <div class="card-subtitle">Sanofi Genzyme &middot; Microbiology</div>
                 </div>
-                <div class="card-meta">2016 &ndash; 2017</div>
+                <div class="card-meta shrink-0">2016 &ndash; 2017</div>
               </div>
-              <ul>
+              <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
                 <li>Performed QC testing in a regulated GMP environment, ensuring product safety and compliance with SOPs.</li>
                 <li>Developed an analytical mindset for data integrity, documentation rigor, and process consistency that carried forward into bioinformatics work.</li>
               </ul>
-              <div class="tags">
+              <div class="flex flex-wrap gap-1.5 mt-3">
                 <span class="tag">GMP</span>
                 <span class="tag">QC</span>
                 <span class="tag">Regulated Environment</span>
               </div>
             </div>
-
-            <div class="card" style="margin-top:0.6rem;">
-              <div class="card-header">
+            <div class="card mt-2">
+              <div class="flex justify-between gap-3 items-baseline mb-1">
                 <div>
                   <div class="card-title">Research Assistant &amp; NHGRI Internship</div>
                   <div class="card-subtitle">Colby College &amp; National Human Genome Research Institute</div>
                 </div>
-                <div class="card-meta">2013 &ndash; 2017</div>
+                <div class="card-meta shrink-0">2013 &ndash; 2017</div>
               </div>
-              <ul>
+              <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
                 <li>Early genomics and bioinformatics experience: genome sequence analysis, gene expression studies, and wet-lab molecular biology techniques.</li>
                 <li>Contributed to research that led to two peer-reviewed publications (Blood 2019, JoVE 2017).</li>
               </ul>
-              <div class="tags">
+              <div class="flex flex-wrap gap-1.5 mt-3">
                 <span class="tag">Genomics</span>
                 <span class="tag">Research</span>
                 <span class="tag">NHGRI</span>
@@ -510,20 +199,21 @@
           </details>
         </section>
 
-        <section id="projects">
-          <h3>Selected Work</h3>
+        <!-- Selected Work -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Selected Work</h3>
 
           <div class="card">
-            <div class="card-header">
+            <div class="flex justify-between gap-3 items-baseline mb-1">
               <div class="card-title">Agentic Coding &amp; AI‑Assisted Development in GAR</div>
-              <div class="card-meta">Team Enablement &middot; Claude Code</div>
+              <div class="card-meta shrink-0">Team Enablement &middot; Claude Code</div>
             </div>
-            <ul>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Designed and led internal training for the Genomic Analysis and Reporting (GAR) team on using AI coding assistants (Claude Code) for day‑to‑day development.</li>
               <li>Established agentic coding workflows: multi‑step prompting, tool‑using patterns, validation strategies, and code‑review practices to keep AI‑generated outputs safe and maintainable.</li>
               <li>Helped teammates adopt AI‑assisted refactoring, test generation, and documentation, accelerating development, deployment, and maintenance of internal tools and scripts.</li>
             </ul>
-            <div class="tags">
+            <div class="flex flex-wrap gap-1.5 mt-3">
               <span class="tag">Agentic Coding</span>
               <span class="tag">Claude Code</span>
               <span class="tag">Team Training</span>
@@ -531,17 +221,17 @@
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-header">
+          <div class="card mt-3">
+            <div class="flex justify-between gap-3 items-baseline mb-1">
               <div class="card-title">NGS Workflow &amp; QC Utilities</div>
-              <div class="card-meta">Python &middot; Clinical Bioinformatics</div>
+              <div class="card-meta shrink-0">Python &middot; Clinical Bioinformatics</div>
             </div>
-            <ul>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Built Python scripts to automate routine QC checks (coverage thresholds, call flags, file validation), reducing repetitive manual review in clinical pipelines.</li>
               <li>Introduced configuration files, logging, and lightweight tests to make utilities easier to maintain and reuse across the team.</li>
               <li>Used AI coding assistants to draft and refactor sections of code while maintaining strict validation and review steps throughout.</li>
             </ul>
-            <div class="tags">
+            <div class="flex flex-wrap gap-1.5 mt-3">
               <span class="tag">Python</span>
               <span class="tag">QC</span>
               <span class="tag">Pipelines</span>
@@ -549,16 +239,16 @@
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-header">
+          <div class="card mt-3">
+            <div class="flex justify-between gap-3 items-baseline mb-1">
               <div class="card-title">Assay Metrics &amp; Stakeholder Reporting</div>
-              <div class="card-meta">Analytics &middot; Communication</div>
+              <div class="card-meta shrink-0">Analytics &middot; Communication</div>
             </div>
-            <ul>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Created assay performance and operations metrics for scientific and business stakeholders, highlighting trends and improvement areas.</li>
               <li>Summarized complex genomic data into clear visuals and narratives to support decisions on assay health, validation, and process optimization.</li>
             </ul>
-            <div class="tags">
+            <div class="flex flex-wrap gap-1.5 mt-3">
               <span class="tag">Data Analysis</span>
               <span class="tag">Visualization</span>
               <span class="tag">Assay Performance</span>
@@ -566,18 +256,21 @@
             </div>
           </div>
         </section>
+
       </div>
 
       <!-- Right column -->
       <aside>
-        <section id="skills">
-          <h3>Skills</h3>
+
+        <!-- Skills -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Skills</h3>
           <div class="card">
-            <div class="twocol">
+            <div class="grid grid-cols-2 gap-4">
               <div>
-                <div class="skill-label">Programming</div>
-                <div class="skill-bar"><div class="skill-fill" style="--w: 78%;"></div></div>
-                <div class="tags">
+                <div class="text-sm text-slate-500">Programming</div>
+                <div class="skill-bar"><div class="skill-fill" style="width:78%;"></div></div>
+                <div class="flex flex-wrap gap-1 mt-1.5">
                   <span class="tag">Python</span>
                   <span class="tag">SQL</span>
                   <span class="tag">Bash</span>
@@ -586,38 +279,38 @@
                 </div>
               </div>
               <div>
-                <div class="skill-label">Bioinformatics</div>
-                <div class="skill-bar"><div class="skill-fill" style="--w: 82%;"></div></div>
-                <div class="tags">
+                <div class="text-sm text-slate-500">Bioinformatics</div>
+                <div class="skill-bar"><div class="skill-fill" style="width:82%;"></div></div>
+                <div class="flex flex-wrap gap-1 mt-1.5">
                   <span class="tag">Cancer Genomics</span>
                   <span class="tag">NGS</span>
                   <span class="tag">Variant Analysis</span>
-                  <span class="tag">Genomics</span>
+                  <span class="tag">IGV</span>
                 </div>
               </div>
               <div>
-                <div class="skill-label">Data &amp; Workflows</div>
-                <div class="skill-bar"><div class="skill-fill" style="--w: 76%;"></div></div>
-                <div class="tags">
+                <div class="text-sm text-slate-500">Data &amp; Workflows</div>
+                <div class="skill-bar"><div class="skill-fill" style="width:76%;"></div></div>
+                <div class="flex flex-wrap gap-1 mt-1.5">
                   <span class="tag">Data Analysis</span>
                   <span class="tag">QC Metrics</span>
                   <span class="tag">Workflow Design</span>
                 </div>
               </div>
               <div>
-                <div class="skill-label">Collaboration</div>
-                <div class="skill-bar"><div class="skill-fill" style="--w: 74%;"></div></div>
-                <div class="tags">
+                <div class="text-sm text-slate-500">Collaboration</div>
+                <div class="skill-bar"><div class="skill-fill" style="width:74%;"></div></div>
+                <div class="flex flex-wrap gap-1 mt-1.5">
                   <span class="tag">Mentoring</span>
                   <span class="tag">Training</span>
                   <span class="tag">Presentations</span>
                   <span class="tag">Documentation</span>
                 </div>
               </div>
-              <div style="grid-column: 1 / -1;">
-                <div class="skill-label">AI &amp; Agentic Coding</div>
-                <div class="skill-bar"><div class="skill-fill" style="--w: 80%;"></div></div>
-                <div class="tags" style="margin-top:0.35rem;">
+              <div class="col-span-2">
+                <div class="text-sm text-slate-500">AI &amp; Agentic Coding</div>
+                <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
+                <div class="flex flex-wrap gap-1 mt-1.5">
                   <span class="tag">Claude Code</span>
                   <span class="tag">Agentic Workflows</span>
                   <span class="tag">Prompt Design</span>
@@ -626,44 +319,47 @@
                 </div>
               </div>
             </div>
-            <p class="note">
+            <p class="text-xs text-slate-400 mt-4">
               Currently deepening software engineering skills for bioinformatics: testing, workflow orchestration, and robust, AI‑assisted data tooling — agentic coding patterns, safe AI code generation, and validation.
             </p>
           </div>
         </section>
 
-        <section id="education">
-          <h3>Education</h3>
+        <!-- Education -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Education</h3>
           <div class="card">
             <div class="card-title">B.A., Computational Biology (Minor: Mathematics)</div>
             <div class="card-subtitle">Colby College &middot; Waterville, ME</div>
-            <div class="card-meta">2013 &ndash; 2017</div>
-            <ul>
+            <div class="card-meta mt-0.5">2013 &ndash; 2017</div>
+            <ul class="list-disc pl-4 mt-2 text-sm text-slate-500 space-y-1">
               <li>Capstone: Bioinformatic analysis of whole‑genome sequence data from Diamond Blackfan Anemia patients to determine putative intronic mutations.</li>
             </ul>
           </div>
         </section>
 
-        <section id="publications">
-          <h3>Publications</h3>
+        <!-- Publications -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Publications</h3>
           <div class="card">
-            <ul>
+            <ul class="list-disc pl-4 text-sm text-slate-500 space-y-3">
               <li>
-                <strong>Whole‑genome sequencing to detect small deletions in ribosomal protein genes in Diamond Blackfan Anemia patients.</strong><br>
+                <strong class="text-slate-700">Whole‑genome sequencing to detect small deletions in ribosomal protein genes in Diamond Blackfan Anemia patients.</strong><br>
                 Analyzed whole‑genome data from DBA patients to determine putative intronic mutations. Blood (2019).
               </li>
               <li>
-                <strong>Measuring gene expression in bombarded barley aleurone layers with increased throughput.</strong><br>
+                <strong class="text-slate-700">Measuring gene expression in bombarded barley aleurone layers with increased throughput.</strong><br>
                 Studied effects of TaABF1 serine phosphorylation on regulation of HVA1 and Amy32b. JoVE (2017).
               </li>
             </ul>
           </div>
         </section>
 
-        <section id="languages">
-          <h3>Languages</h3>
+        <!-- Languages -->
+        <section class="mb-7">
+          <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Languages</h3>
           <div class="card">
-            <ul>
+            <ul class="list-disc pl-4 text-sm text-slate-500 space-y-1">
               <li>Kiswahili (Native)</li>
               <li>Kalenjin (Native)</li>
               <li>French (Proficient)</li>
@@ -675,30 +371,10 @@
     </div>
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script>
-    function downloadPDF() {
-      const links = document.querySelector('.hero-links');
-      links.style.display = 'none';
-      html2pdf()
-        .set({
-          margin: 10,
-          filename: 'David-Chelimo-Resume.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f8fafc' },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        })
-        .from(document.body)
-        .save()
-        .then(() => { links.style.display = ''; });
-    }
-  </script>
-
-  <footer>
-    &copy; <span id="year"></span> David Chelimo &middot; Built with HTML &amp; CSS.
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+  <footer class="border-t border-slate-200 px-6 py-5 text-center text-xs text-slate-400">
+    &copy; <span id="year"></span> David Chelimo &middot; Built with HTML, Tailwind CSS &amp; WeasyPrint.
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
+
 </body>
 </html>
