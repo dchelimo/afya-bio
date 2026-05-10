@@ -103,7 +103,9 @@ npm run build:css && .venv/bin/python scripts/generate_pdf.py
 
 ## GitHub Actions (`build.yml`)
 
-Triggers on push to `main`. Steps:
+Triggers on push to `main` when any of these paths change: `index.html`, `src/**`, `tailwind.config.js`, `scripts/**`, `package.json`, `package-lock.json`, `requirements.txt`. Changes to `CLAUDE.md`, `CNAME`, `.gitignore`, etc. do not trigger a build.
+
+Steps:
 1. Checkout repo
 2. Node.js 20 → `npm ci` → `npm run build:css`
 3. Python 3.11 → install WeasyPrint system libs (pango, cairo, harfbuzz, fontconfig) → `pip install -r requirements.txt`
