@@ -63,6 +63,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           mkdir -p dist
           git add -f dist/styles.css David-Chelimo-Resume.pdf
-          git add index.html cv/index.html projects/index.html blog/index.html
+          find . -name "*.html" -not -path "*/.venv/*" -not -path "*/node_modules/*" | xargs git add
           git diff --cached --quiet || git commit -m "chore: rebuild site, CSS, and PDF [skip ci]"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dchelimo/afya-bio.git
