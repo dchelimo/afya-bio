@@ -19,7 +19,8 @@ PAGES = [
     ("bio.html",      "index.html",            "bio",      "Bio",      "David Chelimo — Clinical Bioinformatics Scientist."),
     ("cv.html",       "cv/index.html",         "cv",       "CV",       "David Chelimo's CV — clinical bioinformatics, NGS, agentic coding."),
     ("projects.html", "projects/index.html",   "projects", "Projects", "Projects by David Chelimo — bioinformatics tooling and AI-assisted workflows."),
-    ("blog.html",     "blog/index.html",       "blog",     "Blog",     "Writing by David Chelimo on clinical bioinformatics and agentic coding."),
+    ("blog.html",                       "blog/index.html",                       "blog", "Blog",                    "Writing by David Chelimo on clinical bioinformatics and agentic coding."),
+    ("blog/building-this-site.html",    "blog/building-this-site/index.html",    "blog", "Building This Site",       "How I built dchelimo.afyagateway.io using Claude Code, Jinja2, Tailwind, and WeasyPrint."),
 ]
 
 def render_all():
