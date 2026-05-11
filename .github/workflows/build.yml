@@ -11,6 +11,7 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'requirements.txt'
+      - '.github/workflows/**'
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
