@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <main class="page-main animate-in">
+
+    <div class="hero-block">
+      <p class="page-eyebrow"><a href="{{ root }}projects/">Projects</a></p>
+      <h1 class="page-title">Benefits PDF Analyzer</h1>
+      <p class="post-dateline">In planning &middot; Python &middot; AI / Agents</p>
+    </div>
+
+    <article class="post-body">
+
+      <p class="page-lede">
+        A tool that ingests employee benefits PDFs from two organizations, extracts and normalizes the
+        content, and exposes it through a report or conversational agent — so you can ask plain-language
+        questions and get direct comparisons across plans.
+      </p>
+
+      <h2>The problem</h2>
+      <p>
+        Comparing employee benefits across organizations is harder than it should be. The information exists,
+        but it's buried in dense PDFs with inconsistent formatting, plan-specific terminology, and no standard
+        schema. The result is that most people either spend hours reading documents or make decisions with
+        incomplete information.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        The tool will work in two stages. First, an extraction and normalization step that parses the PDFs,
+        identifies plan sections (medical, dental, vision, FSA/HSA, etc.), and maps them to a common schema.
+        Second, a query layer — either a structured comparison report or a conversational agent — that lets
+        you ask questions like "which plan has lower out-of-pocket maximums for a family?" and get a direct
+        answer with source references.
+      </p>
+
+      <h2>Stack</h2>
+      <p>
+        Python for the core pipeline. PDF extraction via <code>pdfplumber</code> or <code>pymupdf</code>,
+        with an LLM-assisted normalization step to handle the structural variation across documents.
+        The conversational layer will use the Claude API with tool use for structured plan lookups.
+      </p>
+
+      <h2>Status</h2>
+      <p>
+        In planning. Repo and write-up will be linked here once the initial version is working.
+      </p>
+
+    </article>
+
+  </main>
+
+{% endblock %}
