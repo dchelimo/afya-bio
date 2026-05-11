@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Building This Site — David Chelimo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How I built dchelimo.afyagateway.io using Claude Code, Jinja2, Tailwind, and WeasyPrint.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/styles.css">
+</head>
+<body>
+
+  <div class="site-bar"></div>
+
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="../../" class="site-brand">David Chelimo</a>
+      <ul class="site-nav-links">
+        <li><a href="../../"            class="">Bio</a></li>
+        <li><a href="../../projects/"   class="">Projects</a></li>
+        <li><a href="../../blog/"       class="active">Blog</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  
+
+  <main class="page-main animate-in">
+
+    <div class="hero-block">
+      <p class="page-eyebrow"><a href="../../blog/">Blog</a></p>
+      <h1 class="page-title">Building This Site with Claude Code</h1>
+      <p class="post-dateline">May 2025 &middot; Agentic Coding &middot; Web</p>
+    </div>
+
+    <article class="post-body">
+
+      <p class="page-lede">
+        This site is the first project I'm writing up publicly — partly because it's a good example of
+        agentic coding in practice, and partly because building it surfaced enough interesting problems
+        to be worth documenting.
+      </p>
+
+      <h2>The goal</h2>
+      <p>
+        I wanted a personal site that could serve two purposes: a short bio landing page and a full CV,
+        hosted on GitHub Pages with a custom domain. Simple requirements, but I also wanted the
+        implementation to be a genuine demonstration of how I work — using Claude Code throughout,
+        treating it as a collaborative tool rather than a code generator.
+      </p>
+
+      <h2>Stack choices</h2>
+      <p>
+        The core stack is three tools: <strong>Jinja2</strong> for HTML templating, <strong>Tailwind CSS v3</strong>
+        for styles, and <strong>WeasyPrint</strong> for generating the PDF résumé from the CV page.
+      </p>
+      <p>
+        Jinja2 was an easy call — it's Python, straightforward, and gives you a clean separation between
+        layout and content without the overhead of a full static site generator. Tailwind v3 (not v4) because
+        v4 requires Node 18+ features that create friction in CI. WeasyPrint for PDF because it renders
+        directly from HTML+CSS, so the CV page and the résumé PDF stay in sync automatically.
+      </p>
+      <p>
+        The design aesthetic I described to Claude as "Editorial Scientific" — DM Serif Display for the name,
+        DM Sans for body copy, JetBrains Mono for metadata. Warm off-white background, navy headings, teal
+        for links and timeline accents.
+      </p>
+
+      <h2>The build pipeline</h2>
+      <p>
+        The pipeline runs in GitHub Actions on every push to <code>main</code> that touches source files:
+      </p>
+      <ol>
+        <li>Compile Tailwind CSS → <code>dist/styles.css</code></li>
+        <li>Render Jinja templates → HTML pages (<code>scripts/build_site.py</code>)</li>
+        <li>Generate the PDF résumé via WeasyPrint (<code>scripts/generate_pdf.py</code>)</li>
+        <li>Commit and push the built artifacts back to the repo</li>
+      </ol>
+      <p>
+        The key design decision here: source files live in <code>templates/</code> and <code>src/</code>,
+        and the generated HTML, CSS, and PDF are committed by the Actions workflow. You never edit
+        <code>index.html</code> or <code>cv/index.html</code> directly — you edit the templates and let CI
+        rebuild everything.
+      </p>
+      <p>
+        One gotcha: <code>dist/styles.css</code> is gitignored locally but needs to be committed for GitHub Pages
+        to serve it. The solution is <code>git add -f dist/styles.css</code> in the Actions step — the <code>-f</code>
+        flag bypasses the <code>.gitignore</code> rule. Not elegant, but it works.
+      </p>
+
+      <h2>PDF layout: why <code>display: table</code></h2>
+      <p>
+        The CV page uses a two-column layout. Getting that to render correctly in WeasyPrint took a few tries.
+        CSS Grid didn't work — WeasyPrint's Grid support is partial. Floats were unreliable with the column heights.
+        The solution was the old-school <code>display: table</code> / <code>display: table-cell</code> approach,
+        which WeasyPrint handles cleanly. It's not how you'd write CSS in 2025 for the web, but for a PDF renderer
+        it's the right tool.
+      </p>
+
+      <h2>Where Claude Code fit in</h2>
+      <p>
+        I used Claude Code throughout — not just to generate boilerplate, but as an active collaborator on design
+        decisions, debugging, and architecture. A few specific examples:
+      </p>
+      <ul>
+        <li>
+          <strong>Iterative design:</strong> I described the aesthetic I wanted in plain language and Claude
+          produced the Tailwind component classes. I gave feedback ("the nav doesn't look great",
+          "remove the AI-purple", "make it more editorial"), and we iterated until it matched what I had in mind.
+        </li>
+        <li>
+          <strong>Debugging WeasyPrint:</strong> When the two-column layout broke in the PDF, Claude worked through
+          the CSS Grid → floats → display:table progression with me, explaining why each approach failed in
+          WeasyPrint's rendering model.
+        </li>
+        <li>
+          <strong>Git recovery:</strong> OneDrive sync corrupted a git object mid-session. Claude walked through
+          diagnosing the corrupt blob, identified an orphan tree object, and guided a targeted recovery —
+          soft reset, re-stage, re-commit, manual object deletion — without needing to re-clone.
+        </li>
+        <li>
+          <strong>CI setup:</strong> The Actions workflow needed <code>permissions: contents: write</code> and
+          a specific push URL format using <code>GITHUB_TOKEN</code>. Claude caught the permission issue and
+          fixed the push step.
+        </li>
+      </ul>
+
+      <h2>Things I'd do differently</h2>
+      <p>
+        The main thing I'd reconsider is having the Actions workflow commit built artifacts back to the repo.
+        It works, but it means every push generates a follow-up "build" commit that clutters the history.
+        A cleaner approach would be to deploy from an artifact rather than committing built files — but that
+        requires a different GitHub Pages setup, and for a personal site the current approach is fine.
+      </p>
+      <p>
+        I'd also set up the blog structure earlier. Adding individual post pages required updating the Jinja
+        builder, adding new CSS classes, and creating a <code>templates/blog/</code> subdirectory — none of it
+        is hard, but it's easier to think through the routing upfront than to retrofit it.
+      </p>
+
+      <h2>What's next</h2>
+      <p>
+        The Projects page is a placeholder. I want to write up a few specific pieces of work there — the
+        QC utilities, the agentic coding rollout at GAR. The blog will grow with more posts on prompt patterns,
+        AI-assisted development in regulated environments, and tooling.
+      </p>
+      <p>
+        The site itself is open source at
+        <a href="https://github.com/dchelimo/afya-bio" target="_blank" rel="noopener">github.com/dchelimo/afya-bio</a>
+        if you want to see how it's wired up.
+      </p>
+
+    </article>
+
+  </main>
+
+
+
+  <footer class="site-footer">
+    &copy; <span id="year"></span> David Chelimo &middot; <a href="https://dchelimo.afyagateway.io">dchelimo.afyagateway.io</a>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </footer>
+
+</body>
+</html>
