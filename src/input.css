@@ -568,32 +568,12 @@
     margin: 10mm 13mm;
   }
 
-  /* ── Hide web-only elements ── */
-  .site-bar,
-  .site-nav,
-  .site-footer,
-  .hero-links,
-  .header-links,
-  .earlier-toggle,
-  details > summary,
-  #about,
-  #selected-work,
-  #languages,
-  footer             { display: none !important; }
-
-  /* Expand earlier experience in PDF */
-  #earlier-experience            { display: block !important; }
-  #earlier-experience summary    { display: none !important; }
-  #earlier-experience > *        { display: block !important; }
-
-  /* Cap bullets at 3 per experience entry */
-  .exp-bullets li:nth-child(n+4) { display: none !important; }
-
-  /* Show earlier experience content even though summary is hidden */
-  details            { display: block !important; }
-  details > *        { display: block !important; }
-
-  .animate-in        { animation: none !important; opacity: 1 !important; transform: none !important; }
+  /* Note: hide rules for nav, footer, About, Selected Work, Languages,
+     contact buttons, and the earlier-experience toggle used to live
+     here. They were removed when the PDF began rendering from the
+     standalone templates/cv_print.html, which never emits those
+     elements. Per-bullet visibility is now driven by `pdf: false` in
+     data/cv.yaml instead of a CSS nth-child cap. */
 
   /* ── Base ── */
   body {
@@ -616,13 +596,6 @@
     grid-template-columns: 1fr auto;
     gap: 10pt;
     align-items: end;
-  }
-
-  .header-specialisms {
-    font-size: 6.5pt;
-    letter-spacing: 0.14em;
-    color: #0A7566;
-    margin-bottom: 2pt;
   }
 
   .site-name {
@@ -653,7 +626,7 @@
 
   .header-meta span::before { display: none; }
 
-  /* Summary shown in PDF header in place of About section */
+  /* Summary anchors the PDF header — about/intro section is omitted from PDF */
   .header-summary {
     font-size: 8pt;
     color: #333;
