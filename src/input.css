@@ -478,7 +478,8 @@
     border-radius: 3px;
     background: var(--teal-light);
     color: var(--teal);
-    border: 1px solid var(--teal-mid);
+    border: none;
+    white-space: nowrap;
   }
 
   /* Skills */
@@ -749,9 +750,10 @@
     padding: 1pt 3.5pt;
     background: #E6F4F2;
     color: #0A7566;
-    border: 0.5pt solid #C2E2DE;
+    border: none;
     border-radius: 2pt;
     letter-spacing: 0.04em;
+    white-space: nowrap;
   }
 
   /* ── Cards → flat ── */
@@ -779,5 +781,5 @@
   }
 
   /* ── Page break control ── */
-  .exp-entry, section { page-break-inside: avoid; }
+  .exp-entry { page-break-inside: avoid; }
 }
