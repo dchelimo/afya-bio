@@ -197,7 +197,7 @@ publications:
 
 languages:
   pdf: false
-  items:
+  list:
     - Kiswahili (Native)
     - Kalenjin (Native)
     - French (Proficient)
