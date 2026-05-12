@@ -543,6 +543,9 @@
     font-size: 0.9rem;
     line-height: 1;
   }
+
+  .earlier-toggle .toggle-icon::before { content: '+'; }
+  details[open] .earlier-toggle .toggle-icon::before { content: '−'; }
 }
 
 /* ─── Animations (web only) ─────────────────────────────────── */
