@@ -1,0 +1,203 @@
+# CV content — single source of truth for both the web CV (templates/cv.html)
+# and the PDF (templates/cv_print.html).
+#
+# Visibility flags:
+#   pdf: false   → omit from PDF only
+#   web: false   → omit from web only
+#   (omitted)    → visible in both
+# Flags apply at the section, entry, or individual-bullet level.
+
+header:
+  name: David Chelimo
+  title: Clinical Bioinformatics Scientist II — Labcorp
+  meta:
+    - Boston, MA (US)
+    - "~10 years in genomics"
+    - Labcorp — May 2026
+  links:
+    - label: GitHub
+      url: https://github.com/dchelimo
+      primary: true
+    - label: LinkedIn
+      url: https://www.linkedin.com/in/david-chelimo
+    - label: Email
+      url: mailto:dchelimo7@gmail.com
+    - label: PDF Resume
+      url: "{root}David-Chelimo-Resume.pdf"
+  summary: >-
+    Clinical bioinformatics scientist with nearly a decade of experience in cancer
+    genomics and clinical NGS. Proficient in Python and SQL, comfortable with Bash,
+    R, and Java. Deep experience in annotated genomic profiles, somatic variant
+    review, and QA/QC in high-complexity regulated environments. Actively focused
+    on agentic coding workflows, AI coding assistants, and moving toward a
+    bioinformatics software engineering role.
+
+about:
+  pdf: false
+  paragraphs:
+    - >-
+      I work at the intersection of clinical diagnostics, cancer genomics, and
+      data workflows. At Labcorp, I support clinical NGS assays through variant
+      review, QC, and continuous improvement of bioinformatics workflows in a
+      high-throughput, regulated environment.
+    - >-
+      Previously, I helped build and scale the Genomic Analysis and Reporting
+      (GAR) function at Foundation Medicine, curating ~95,000 samples and leading
+      advanced analyses across complex cancer cases. Alongside that, I spearheaded
+      adoption of agentic coding practices and AI coding assistants (e.g., Claude
+      Code) to make our team's development and maintenance work faster, safer,
+      and easier to share.
+    - >-
+      My next step is to deepen my software engineering skill set and own more of
+      the pipeline and tooling layer — building reproducible, well-tested,
+      AI-assisted workflows that bridge clinical bioinformatics and software
+      engineering.
+
+experience:
+  - role: Clinical Bioinformatics Scientist II
+    company: Labcorp
+    location: Remote (US)
+    dates: May 2026 – Present
+    bullets:
+      - Support clinical NGS assays through variant review, QC, and troubleshooting in a high-complexity diagnostic setting.
+      - Contribute to workflow improvements and documentation to enhance reliability, reproducibility, and turnaround time.
+      - Collaborate with cross-functional teams to align assay needs with data and tooling requirements.
+    tags: [NGS, Clinical Genomics, Variant Review]
+
+  - role: Clinical Bioinformatics Analyst III
+    company: Foundation Medicine
+    location: Boston, MA
+    dates: Feb 2025 – Apr 2026
+    bullets:
+      - Contributed and collaborated with lab, engineering, and clinical teams to improve dry lab operations and data workflows.
+      - Developed and implemented a Python/SQL script (with Git/GitHub) to automate failure communication with the lab, reducing manual entry errors and significantly decreasing team workload.
+      - Designed and deployed an automated sample comparison report generator (Python, SQL, HTML, CSS) to rapidly produce standardized PDF reports, streamlining data review processes.
+      - text: Migrated cron jobs to AWS Lambda and EventBridge, leveraging Git, GitHub, Jenkins, and Docker to improve deployment efficiency and enable continuous integration.
+        pdf: false
+      - text: Troubleshot technical issues, maintained quality control metrics, and documented investigations in compliance with SOPs.
+        pdf: false
+      - text: Mentored junior analysts and provided technical guidance on complex cases and process improvements.
+        pdf: false
+    tags: [Python, SQL, AWS Lambda, Docker, Jenkins, Automation]
+
+  - role: Clinical Bioinformatics Analyst II
+    company: Foundation Medicine
+    location: Cambridge, MA
+    dates: Aug 2019 – Feb 2025
+    bullets:
+      - Led the migration of automation scripts from Python 2 to Python 3, improving code maintainability and enabling collaborative development.
+      - Built collaborative tools for data extraction, transformation, and reporting from Oracle SQL databases using Python, HTML, and CSS.
+      - Facilitated training sessions and contributed to the validation and launch of new genetic assays in partnership with cross-functional teams.
+      - text: Conducted manual review of NGS and assay data, ensuring high-quality variant calls and timely delivery of clinical results.
+        pdf: false
+    tags: [Python, Oracle SQL, NGS, Assay Validation]
+
+  - role: Clinical Bioinformatics Analyst I
+    company: Foundation Medicine
+    location: Cambridge, MA
+    dates: Sep 2017 – Aug 2019
+    bullets:
+      - Developed annotated genomic profiles of somatic aberrations based on NGS data in cancer-patient samples.
+      - Reviewed genomic variant calls using proprietary and public tools (e.g., IGV) in collaboration with scientific teams.
+      - Delivered test results in compliance with SOPs, ensuring high quality within defined turnaround times.
+      - text: Collaborated with technical teams to specify requirements for tools that enhance workflow efficiency and robustness.
+        pdf: false
+    tags: [Somatic Variants, IGV, NGS, SOPs]
+
+earlier_experience:
+  - role: Quality Control Analyst I
+    company: Sanofi Genzyme
+    location: Boston, MA
+    dates: Jun 2017 – Sep 2017
+    bullets:
+      - Executed rigorous quality control tests throughout manufacturing.
+      - Detected, quantified, and identified potential contaminants using advanced analytical techniques.
+      - Ensured strict compliance with CGMP guidelines.
+    tags: [CGMP, QC, Regulated Environment]
+
+  - role: Molecular Biology Lab Research Assistant
+    company: Colby College
+    location: Waterville, ME
+    dates: Feb 2014 – May 2017
+    bullets:
+      - Investigated transcription factor regulation in cereal grains using advanced molecular biology techniques.
+      - Analyzed gene expression and contributed to understanding stress response mechanisms in crops.
+    tags: [Molecular Biology, Gene Expression, Research]
+
+  - role: Summer Research Intern
+    company: National Human Genome Research Institute
+    location: Bethesda, MD
+    dates: Jun 2016 – Sep 2016
+    bullets:
+      - Analyzed whole genome sequences for DBA patients, identifying putative SNPs and CNVs that could be the drivers of the disorder.
+      - Conducted GWAS and validated findings with research teams.
+    tags: [Genomics, GWAS, NHGRI]
+
+selected_work:
+  pdf: false
+  entries:
+    - title: Agentic Coding & AI-Assisted Development in GAR
+      subtitle: Team Enablement · Claude Code
+      bullets:
+        - Designed and led internal training for the GAR team on using AI coding assistants (Claude Code) for day-to-day development.
+        - "Established agentic coding workflows: multi-step prompting, tool-using patterns, validation strategies, and code-review practices to keep AI-generated outputs safe and maintainable."
+        - Helped teammates adopt AI-assisted refactoring, test generation, and documentation, accelerating development and maintenance of internal tools.
+      tags: [Agentic Coding, Claude Code, Team Training, Developer Experience]
+
+    - title: NGS Workflow & QC Utilities
+      subtitle: Python · Clinical Bioinformatics
+      bullets:
+        - Built Python scripts to automate routine QC checks (coverage thresholds, call flags, file validation), reducing repetitive manual review in clinical pipelines.
+        - Introduced configuration files, logging, and lightweight tests to make utilities easier to maintain and reuse across the team.
+        - Used AI coding assistants to draft and refactor code while maintaining strict validation and review steps.
+      tags: [Python, QC, Pipelines, Automation]
+
+    - title: Assay Metrics & Stakeholder Reporting
+      subtitle: Analytics · Communication
+      bullets:
+        - Created assay performance and operations metrics for scientific and business stakeholders, highlighting trends and improvement areas.
+        - Summarized complex genomic data into clear visuals and narratives to support decisions on assay health, validation, and process optimization.
+      tags: [Data Analysis, Visualization, Assay Performance, Stakeholder Comms]
+
+skills:
+  rows:
+    - label: Programming
+      percent: 78
+      tags: [Python, SQL, Bash, Java, R]
+    - label: Bioinformatics
+      percent: 82
+      tags: [Cancer Genomics, NGS, Variant Analysis, IGV]
+    - label: Data & Workflows
+      percent: 76
+      tags: [Data Analysis, QC Metrics, Workflow Design]
+    - label: AI & Agentic Coding
+      percent: 80
+      tags: [Claude Code, Agentic Workflows, Prompt Design, AI Code Validation]
+    - label: Collaboration
+      percent: 74
+      tags: [Mentoring, Training, Presentations, Documentation]
+  footer: "Deepening software engineering skills: testing, workflow orchestration, and AI-assisted data tooling."
+
+education:
+  - degree: B.A., Computational Biology
+    minor: Mathematics
+    school: Colby College
+    location: Waterville, ME
+    dates: 2013 – 2017
+    notes:
+      - "Capstone: Bioinformatic analysis of whole-genome sequence data from Diamond Blackfan Anemia patients to determine putative intronic mutations."
+
+publications:
+  - title: Whole-genome sequencing to detect small deletions in ribosomal protein genes in Diamond Blackfan Anemia patients.
+    description: Analyzed whole-genome data from DBA patients to determine putative intronic mutations.
+    venue: Blood (2019)
+  - title: Measuring gene expression in bombarded barley aleurone layers with increased throughput.
+    description: Studied effects of TaABF1 serine phosphorylation on regulation of HVA1 and Amy32b.
+    venue: JoVE (2017)
+
+languages:
+  pdf: false
+  items:
+    - Kiswahili (Native)
+    - Kalenjin (Native)
+    - French (Proficient)
