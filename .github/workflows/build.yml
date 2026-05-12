@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/**'
       - 'templates/**'
       - 'src/**'
       - 'tailwind.config.js'

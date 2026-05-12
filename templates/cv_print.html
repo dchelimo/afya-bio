@@ -1,6 +1,8 @@
-{% extends "base.html" %}
-
-{# Macro: render an experience entry from a YAML record. #}
+<!DOCTYPE html>
+{# Print-only CV. Rendered to cv/print/index.html and read by generate_pdf.py.
+   Standalone (no nav/footer/site bar) and includes only pdf-visible content
+   from data/cv.yaml. The browser preview at /cv/print/ is intentional but
+   noindex'd — visitors should land on /cv/ instead. #}
 {% macro exp_entry(e) %}
   <div class="exp-entry">
     <div class="exp-header-row flex justify-between items-baseline gap-3">
@@ -11,7 +13,7 @@
       <div class="exp-date shrink-0">{{ e.dates }}</div>
     </div>
     <ul class="exp-bullets">
-      {% for b in e.bullets if b.web %}
+      {% for b in e.bullets if b.pdf %}
         <li>{{ b.text }}</li>
       {% endfor %}
     </ul>
@@ -22,31 +24,32 @@
     {% endif %}
   </div>
 {% endmacro %}
-
-{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ cv.header.name }} — Resume</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="{{ page_description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ css_path }}">
+</head>
+<body>
 
   <!-- ── Header ─────────────────────────────────────────────── -->
-  <header class="site-header animate-in">
+  <header class="site-header">
     <div class="max-w-4xl mx-auto">
 
       <div class="header-grid">
-        <!-- Identity -->
         <div>
           <h1 class="site-name">{{ cv.header.name }}</h1>
           <p class="site-title">{{ cv.header.title }}</p>
         </div>
 
-        <!-- Aside: meta + links -->
         <div class="header-aside">
           <div class="header-meta">
             {% for m in cv.header.meta %}<span>{{ m }}</span>{% endfor %}
-          </div>
-          <div class="header-links hero-links">
-            {% for link in cv.header.links %}
-              <a href="{{ link.url | replace('{root}', root) }}"
-                 class="link-btn{% if link.primary %} link-btn--primary{% endif %}"
-                 {% if link.url.startswith('http') or link.url.endswith('.pdf') %}target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>
-            {% endfor %}
           </div>
         </div>
       </div>
@@ -63,71 +66,24 @@
       <!-- Left column -->
       <div>
 
-        {% if cv.about and cv.about.web is not sameas false %}
-        <section id="about" class="mb-8 animate-in delay-1">
-          <h3 class="section-heading">About</h3>
-          <div class="about-card card text-sm text-gray-600 space-y-3">
-            {% for p in cv.about.paragraphs %}<p>{{ p }}</p>{% endfor %}
-          </div>
-        </section>
-        {% endif %}
-
-        <section class="mb-8 animate-in delay-2">
+        <section class="mb-8">
           <h3 class="section-heading">Experience</h3>
-
           <div class="timeline">
-            {% for e in cv.experience if e.web is not sameas false %}
+            {% for e in cv.experience if e.pdf is not sameas false %}
+              {{ exp_entry(e) }}
+            {% endfor %}
+            {% for e in cv.earlier_experience if e.pdf is not sameas false %}
               {{ exp_entry(e) }}
             {% endfor %}
           </div>
-
-          {% if cv.earlier_experience %}
-          <details id="earlier-experience" class="mt-3">
-            <summary class="earlier-toggle">
-              <span class="toggle-icon"></span>
-              Earlier experience
-            </summary>
-
-            <div class="timeline mt-3">
-              {% for e in cv.earlier_experience if e.web is not sameas false %}
-                {{ exp_entry(e) }}
-              {% endfor %}
-            </div>
-          </details>
-          {% endif %}
         </section>
-
-        {% if cv.selected_work and cv.selected_work.web is not sameas false %}
-        <section id="selected-work" class="mb-8 animate-in delay-3">
-          <h3 class="section-heading">Selected Work</h3>
-
-          <div class="timeline">
-            {% for w in cv.selected_work.entries %}
-            <div class="exp-entry">
-              <div class="exp-header-row flex justify-between items-baseline gap-3">
-                <div class="exp-role">{{ w.title }}</div>
-                <div class="exp-date shrink-0">{{ w.subtitle }}</div>
-              </div>
-              <ul class="exp-bullets">
-                {% for b in w.bullets if b.web %}<li>{{ b.text }}</li>{% endfor %}
-              </ul>
-              {% if w.tags %}
-              <div class="tags">
-                {% for tag in w.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-              </div>
-              {% endif %}
-            </div>
-            {% endfor %}
-          </div>
-        </section>
-        {% endif %}
 
       </div>
 
       <!-- Right column -->
       <aside>
 
-        <section class="mb-8 animate-in delay-2">
+        <section class="mb-8">
           <h3 class="section-heading">Skills</h3>
           <div class="card space-y-4">
             {% for row in cv.skills.rows %}
@@ -139,13 +95,10 @@
               </div>
             </div>
             {% endfor %}
-            {% if cv.skills.footer %}
-            <p class="text-xs text-gray-400 pt-1 border-t border-gray-100">{{ cv.skills.footer }}</p>
-            {% endif %}
           </div>
         </section>
 
-        <section class="mb-8 animate-in delay-3">
+        <section class="mb-8">
           <h3 class="section-heading">Education</h3>
           {% for ed in cv.education %}
           <div class="card">
@@ -162,14 +115,14 @@
           {% endfor %}
         </section>
 
-        <section class="mb-8 animate-in delay-4">
+        <section class="mb-8">
           <h3 class="section-heading">Publications</h3>
           <div class="card">
             <ul class="pub-list space-y-4 text-sm text-gray-600">
               {% for p in cv.publications %}
               <li>
                 {% if p.url %}
-                <a href="{{ p.url }}" target="_blank" rel="noopener"><strong class="text-gray-800 font-medium">{{ p.title }}</strong></a>
+                <a href="{{ p.url }}"><strong class="text-gray-800 font-medium">{{ p.title }}</strong></a>
                 {% else %}
                 <strong class="text-gray-800 font-medium">{{ p.title }}</strong>
                 {% endif %}
@@ -180,19 +133,9 @@
           </div>
         </section>
 
-        {% if cv.languages and cv.languages.web is not sameas false %}
-        <section id="languages" class="animate-in delay-5">
-          <h3 class="section-heading">Languages</h3>
-          <div class="card">
-            <ul class="exp-bullets">
-              {% for l in cv.languages.list %}<li>{{ l }}</li>{% endfor %}
-            </ul>
-          </div>
-        </section>
-        {% endif %}
-
       </aside>
     </div>
   </main>
 
-{% endblock %}
+</body>
+</html>
