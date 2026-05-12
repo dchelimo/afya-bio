@@ -189,9 +189,11 @@ education:
 
 publications:
   - title: Whole-genome sequencing to detect small deletions in ribosomal protein genes in Diamond Blackfan Anemia patients.
+    url: https://ashpublications.org/blood/article/130/Supplement%201/1174/116065/Whole-Genome-Sequencing-to-Detect-Small-Deletions
     description: Analyzed whole-genome data from DBA patients to determine putative intronic mutations.
     venue: Blood (2019)
   - title: Measuring gene expression in bombarded barley aleurone layers with increased throughput.
+    url: https://www.jove.com/t/56728/measuring-gene-expression-bombarded-barley-aleurone-layers-with
     description: Studied effects of TaABF1 serine phosphorylation on regulation of HVA1 and Amy32b.
     venue: JoVE (2017)
 
