@@ -39,7 +39,7 @@
         <!-- Aside: meta + links -->
         <div class="header-aside">
           <div class="header-meta">
-            {% for m in cv.header.meta %}<span>{{ m }}</span>{% endfor %}
+            {% for m in cv.header.meta if m.web %}<span>{{ m.text }}</span>{% endfor %}
           </div>
           <div class="header-links hero-links">
             {% for link in cv.header.links %}

@@ -12,9 +12,12 @@ header:
   title: Clinical Bioinformatics Scientist II — Labcorp
   meta:
     - Boston, MA
-    - dchelimo7@gmail.com
-    - "(207) 313-6521"
-    - https://www.linkedin.com/in/david-chelimo
+    - text: dchelimo7@gmail.com
+      web: false
+    - text: "(207) 313-6521"
+      web: false
+    - text: https://www.linkedin.com/in/david-chelimo
+      web: false
   links:
     - label: GitHub
       url: https://github.com/dchelimo

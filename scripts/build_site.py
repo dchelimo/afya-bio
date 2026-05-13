@@ -18,23 +18,24 @@ env = Environment(
 )
 
 
-def _normalize_bullet(b):
-    """Bullets may be plain strings or {text, pdf?, web?} dicts.
-    Return a uniform dict so templates iterate without branching."""
-    if isinstance(b, str):
-        return {"text": b, "pdf": True, "web": True}
-    return {"text": b["text"], "pdf": b.get("pdf", True), "web": b.get("web", True)}
+def _normalize_item(item):
+    """Plain strings or {text, pdf?, web?} dicts → uniform dict."""
+    if isinstance(item, str):
+        return {"text": item, "pdf": True, "web": True}
+    return {"text": item["text"], "pdf": item.get("pdf", True), "web": item.get("web", True)}
 
 
 def load_cv():
-    """Load data/cv.yaml and normalize bullet shapes."""
+    """Load data/cv.yaml and normalize bullet and meta shapes."""
     data = yaml.safe_load((DATA / "cv.yaml").read_text(encoding="utf-8"))
 
     for entry in data.get("experience", []) + data.get("earlier_experience", []):
-        entry["bullets"] = [_normalize_bullet(b) for b in entry.get("bullets", [])]
+        entry["bullets"] = [_normalize_item(b) for b in entry.get("bullets", [])]
 
     for entry in data.get("selected_work", {}).get("entries", []) or []:
-        entry["bullets"] = [_normalize_bullet(b) for b in entry.get("bullets", [])]
+        entry["bullets"] = [_normalize_item(b) for b in entry.get("bullets", [])]
+
+    data["header"]["meta"] = [_normalize_item(m) for m in data["header"].get("meta", [])]
 
     return data
 
