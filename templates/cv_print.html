@@ -49,7 +49,7 @@
 
         <div class="header-aside">
           <div class="header-meta">
-            {% for m in cv.header.meta %}<span>{{ m }}</span>{% endfor %}
+            {% for m in cv.header.meta if m.pdf %}<span>{{ m.text }}</span>{% endfor %}
           </div>
         </div>
       </div>
