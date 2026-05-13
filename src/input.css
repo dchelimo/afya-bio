@@ -638,7 +638,7 @@
     max-width: none;
   }
 
-  /* ── Layout: table (most reliable in WeasyPrint) ── */
+  /* ── Layout: table columns ── */
   main {
     padding: 0 !important;
     margin: 0 !important;
@@ -648,6 +648,7 @@
     display: table;
     width: 100%;
     table-layout: fixed;
+    height: 100%;
   }
 
   .layout-grid > div:first-child {
@@ -655,12 +656,14 @@
     width: 59%;
     padding-right: 10pt;
     vertical-align: top;
+    overflow: visible;
   }
 
   .layout-grid > aside {
     display: table-cell;
     width: 41%;
     vertical-align: top;
+    overflow: visible;
   }
 
   /* ── Section headings ── */
